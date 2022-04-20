@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RestAPI.Models;
 using System;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RestAPI.Controllers
 {
-    [Route("api/controller")]
+    [Route("api/[controller]")]
     [ApiController]
     // ControllerBase is without view support
     public class PagesController : ControllerBase
@@ -19,7 +20,7 @@ namespace RestAPI.Controllers
         {
             this.context = context;
         }
-
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<Page>>> GetPages()
         {
             return await context.Pages.OrderBy(x => x.Sorting).ToListAsync();
@@ -80,3 +81,4 @@ namespace RestAPI.Controllers
 
     }
 }
+
