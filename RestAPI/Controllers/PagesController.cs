@@ -43,7 +43,7 @@ namespace RestAPI.Controllers
 
         //PUT /api/pages/id
         [HttpPut("{id}")]
-        public async Task<ActionResult<Page>> PutPage(int id, Page page)
+        public async Task<ActionResult<Page>> PutPage(int id, [FromBody]Page page)
         {
             if (id != page.Id)
             {
@@ -61,7 +61,7 @@ namespace RestAPI.Controllers
 
         //POST /api/PostPage/id
         [HttpPost]
-        public async Task<ActionResult<Page>> PostPage(Page page)
+        public async Task<ActionResult<Page>> PostPage([FromBody] Page page)
         {
             context.Pages.Add(page);
             await context.SaveChangesAsync();
